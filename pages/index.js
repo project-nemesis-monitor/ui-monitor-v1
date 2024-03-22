@@ -5,7 +5,7 @@ import { Text } from "@chakra-ui/react";
 export default function Home() {
   return (
     <ContainerBlock>
-        <Text color={"white"}  fontFamily={"marianne"}>HELLO</Text>
+        <Text color={"white"}  fontFamily={"marianne"}>COUCOU</Text>
     </ContainerBlock>
   )
 }

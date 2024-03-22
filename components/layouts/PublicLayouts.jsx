@@ -9,7 +9,7 @@ export default function PublicLayout({ children }) {
 
   const router = useRouter()
   return (
-    <Box minH={"100vh"} bg={"#042c44"}>
+    <Box minH={"100vh"} bg={"#041538"}>
       <Head>
         <title>Nemesis</title>
         <meta name="description" content="" />

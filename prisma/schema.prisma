@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model checkfile {
+  id        Int      @id @default(autoincrement())
+  file_id   String   @db.Text
+  check_mod Boolean
+  path      String   @db.Text
+  upload_by String   @db.Text
+  upload_at DateTime @db.Timestamp(0)
+}
+
+model users {
+  id                 Int       @id @default(autoincrement())
+  user_id            String    @db.Text
+  username           String    @db.VarChar(255)
+  email              String    @db.Text
+  role               String    @db.VarChar(255)
+  password           String    @db.Text
+  token              String    @db.Text
+  remember_token     String?   @db.Text
+  refresh_token_time DateTime? @db.Timestamp(0)
+  created_at         DateTime  @db.Timestamp(0)
+  updated_at         DateTime? @db.Timestamp(0)
+}
