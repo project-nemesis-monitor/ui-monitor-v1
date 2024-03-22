@@ -1,0 +1,9 @@
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: black;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #2645F9; /* Couleur de la poignée de la barre de défilement */
+    border-radius: 5px;
+  }
