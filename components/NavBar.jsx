@@ -64,7 +64,7 @@ const Navbar = () => {
                   color={"white"}
                   _hover={{ color: "#2645F9", bg: "white" }}
                 >
-                  CONNEXION
+                  Connexion
                 </Button>
               </NextLink>
             </Box>
@@ -91,7 +91,7 @@ const Navbar = () => {
                   color={"white"}
                   _hover={{ color: "#2645F9", bg: "white" }}
                 >
-                  CONNEXION
+                  Connexion
                 </Button>
               </NextLink>
             </Box>

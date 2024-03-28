@@ -8,7 +8,7 @@ const Footer = () => {
       bg="#2645F9"
       py={4}
       color="white"
-      mt={40}
+      mt={24}
       align="center"
       justify="center"
       direction="column"

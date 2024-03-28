@@ -31,7 +31,7 @@ export default function Buttongradient() {
             color={"white"}
             _hover={{ color: "#2645F9", bg: "white" }}
           >
-            CONNEXION
+            Connexion
           </Button>
         </NextLink>
 
