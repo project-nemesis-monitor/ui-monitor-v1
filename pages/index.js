@@ -1,12 +1,12 @@
 import ContainerBlock from "@/components/ContaineBlock";
-import { Text } from "@chakra-ui/react";
-
-
+import Landingwithicon from "@/components/landingpage/Landingwithicon";
+import { Box } from "@chakra-ui/react";
 export default function Home() {
   return (
     <ContainerBlock>
-        <Text color={"white"}  fontFamily={"marianne"} fontSize={"xxx-large"}>COUCOU</Text>
-
+      <Box pt={"20"}>
+        <Landingwithicon iconpath={"/logo1.png"} />
+      </Box>
     </ContainerBlock>
   )
 }
