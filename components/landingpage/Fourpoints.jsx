@@ -9,24 +9,37 @@ import {
   useColorModeValue,
   useBreakpointValue,
 } from "@chakra-ui/react";
+
 export default function Fourpoints({ data }) {
   const isMobile = useBreakpointValue({ base: true, md: false });
   const isDesktop = useBreakpointValue({ base: false, md: true });
 
+  
+
   return (
     <Box bg={"#2645F9"} fontFamily={"marianne"} pt={20}>
       <Container maxWidth="7xl" p={{ base: 2, sm: 10 }}>
-        <chakra.h3 fontSize="4xl" fontWeight="bold" mb={2} textAlign="center" color={"white"}>
-        Principaux fonctionnalités
+        <chakra.h3
+          fontSize="4xl"
+          fontWeight="bold"
+          mb={2}
+          textAlign="center"
+          color={"white"}
+        >
+          Principaux fonctionnalités
         </chakra.h3>
-        <Text mb={20} textAlign="center" color={"white"}>Découvrez les superpouvoirs de Nemesis : Dominez votre système, sécurisez vos données.</Text>
+        <Text mb={20} textAlign="center" color={"white"}>
+          Découvrez les superpouvoirs de Nemesis : Dominez votre système,
+          sécurisez vos données.
+        </Text>
         {data.map((milestone) => (
           <Flex key={milestone.id} mb="10px">
             {isDesktop && milestone.id % 2 === 0 && (
               <>
                 <EmptyCard />
                 <LineWithDot />
-                <Card {...milestone} />
+               <Card {...milestone} />
+                
               </>
             )}
 
@@ -53,7 +66,6 @@ export default function Fourpoints({ data }) {
 }
 
 const Card = ({ id, title, description }) => {
-  
   const isEvenId = id % 2 == 0;
   let borderWidthValue = isEvenId ? "15px 15px 15px 0" : "15px 0 15px 15px";
   let leftValue = isEvenId ? "-15px" : "unset";
@@ -92,8 +104,6 @@ const Card = ({ id, title, description }) => {
       }}
     >
       <Box>
-        
-
         <VStack spacing={2} mb={3} textAlign="left">
           <chakra.h1 fontSize="2xl" lineHeight={1.2} fontWeight="bold" w="100%">
             {title}
