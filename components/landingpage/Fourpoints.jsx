@@ -26,7 +26,7 @@ export default function Fourpoints({ data }) {
           textAlign="center"
           color={"white"}
         >
-          Principaux fonctionnalités
+          Principales fonctionnalités
         </chakra.h3>
         <Text mb={20} textAlign="center" color={"white"}>
           Découvrez les superpouvoirs de Nemesis : Dominez votre système,
