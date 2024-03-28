@@ -18,7 +18,6 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
   const router = useRouter();
- 
 
   const handleScroll = () => {
     const currentScrollY = window.scrollY;
@@ -55,20 +54,37 @@ const Navbar = () => {
         </Box>
         <Spacer />
         <Box display={{ base: "none", md: "block" }}>
-          <Flex color="white">
-            <Box mx={4}>
-              <NextLink href={"/auth/loginapp"}>
-                <Button
-                  bg="#2645F9"
-                  size="lg"
-                  color={"white"}
-                  _hover={{ color: "#2645F9", bg: "white" }}
-                >
-                  Connexion
-                </Button>
-              </NextLink>
-            </Box>
-          </Flex>
+          {router.pathname.startsWith("/auth/loginapp") ? (
+            <Flex color="white">
+              <Box mx={4}>
+                <NextLink href={"/"}>
+                  <Button
+                    bg="#2645F9"
+                    size="lg"
+                    color={"white"}
+                    _hover={{ color: "#2645F9", bg: "white" }}
+                  >
+                    Retour acceuil
+                  </Button>
+                </NextLink>
+              </Box>
+            </Flex>
+          ) : (
+            <Flex color="white">
+              <Box mx={4}>
+                <NextLink href={"/auth/loginapp"}>
+                  <Button
+                    bg="#2645F9"
+                    size="lg"
+                    color={"white"}
+                    _hover={{ color: "#2645F9", bg: "white" }}
+                  >
+                    Connexion
+                  </Button>
+                </NextLink>
+              </Box>
+            </Flex>
+          )}
         </Box>
         <IconButton
           icon={<HamburgerIcon />}
@@ -84,7 +100,7 @@ const Navbar = () => {
         <Box mt={4} bg={"white"}>
           <Flex direction="column" color="white">
             <Box mx={4} my={2}>
-            <NextLink href={"/auth/loginapp"}>
+              <NextLink href={"/auth/loginapp"}>
                 <Button
                   bg="#2645F9"
                   size="lg"
@@ -95,7 +111,6 @@ const Navbar = () => {
                 </Button>
               </NextLink>
             </Box>
-            
           </Flex>
         </Box>
       </Collapse>
