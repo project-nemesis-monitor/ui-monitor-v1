@@ -41,7 +41,7 @@ export default function Buttongradient() {
           color={"white"}
           _hover={{ color: "#2645F9", bg: "white" }}
         >
-          Télécharger le manuel d'utilisation {"  "} <Image src="/Download.png" />
+          Télécharger le manuel d&apos;utilisation {"  "} <Image src="/Download.png" />
         </Button>
       </HStack>
     </Box>
