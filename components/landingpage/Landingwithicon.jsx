@@ -24,7 +24,7 @@ export default function Landingwithicon({ iconpath }) {
       <Grid
         templateColumns={["repeat(1, 1fr)", "repeat(2, 1fr)"]}
         gap={4}
-        mx={20}
+        mx={24}
       >
         <GridItem>
           <HStack spacing={4}>

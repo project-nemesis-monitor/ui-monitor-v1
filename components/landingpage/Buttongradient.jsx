@@ -21,9 +21,9 @@ export default function Buttongradient() {
       bgSize={"200% 100%"}
       bgPos={"25%"}
       zIndex={0}
-      pb={20}
+      pb={24}
     >
-      <HStack mx={20} spacing={4}>
+      <HStack mx={24} spacing={4}>
         <NextLink href={"/auth/loginapp"}>
           <Button
             bgGradient="linear(to-l, #366DD3, #36C0FA)"
