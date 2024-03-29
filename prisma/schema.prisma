@@ -25,7 +25,7 @@ model users {
   password           String    @db.Text
   token              String    @db.Text
   remember_token     String?   @db.Text
-  refresh_token_time DateTime? @db.Timestamp(0)
-  created_at         DateTime  @db.Timestamp(0)
-  updated_at         DateTime? @db.Timestamp(0)
+  refresh_token_time DateTime? @db.DateTime(0)
+  created_at         DateTime  @default(now())
+  updated_at         DateTime? @default(now())
 }
