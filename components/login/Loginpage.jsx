@@ -50,19 +50,18 @@ export default function LoginPage() {
           password,
         }),
       });
-      console.log(response);
+      
       if (response.ok) {
         const data = await response.json();
-        console.log("data");
-        console.log(data);
-        console.log("data");
+        
         const { token } = data.usr;
 
         Cookies.set("sessionToken", token, {
           secure: true,
           sameSite: "strict",
-          httpOnly: true,
+          
         });
+        
 
         router.push("/");
       } else {
