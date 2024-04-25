@@ -15,6 +15,7 @@ import {
   AlertIcon,
   AlertTitle,
   AlertDescription,
+  Image,
 } from "@chakra-ui/react";
 import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
@@ -103,12 +104,18 @@ export default function Defaultdashboard() {
     fetchFiles();
   }, []);
   if (!userdata) {
-    return <div>Chargement en cours...</div>;
+    return (
+      <>
+        <Center fontFamily={"marianne"}>
+          <div>Chargement en cours...</div>
+        </Center>
+      </>
+    );
   }
   const { username } = userdata;
   return (
     <>
-      <Box justifyContent={"center"} mb={4} fontFamily={"marianne"}>
+      <Box justifyContent={"center"} mb={8} fontFamily={"marianne"}>
         <Center>
           <Heading fontFamily={"marianne"}>Tableau de bord</Heading>
         </Center>
@@ -132,7 +139,13 @@ export default function Defaultdashboard() {
             borderRadius="10px"
           >
             <Heading as={"h4"} size={"md"} fontFamily={"marianne"}>
-              Bienvenue {username}
+              Bienvenue {username}{" "}
+              <Image
+                src="/emojihand.png"
+                alt="emoji"
+                display="inline-block"
+                boxSize={"20px"}
+              />
             </Heading>
           </GridItem>
           <GridItem
@@ -172,19 +185,33 @@ export default function Defaultdashboard() {
           borderRadius="10px"
           h={"49vh"}
         >
-            <Heading as={"h4"} size={"md"} fontFamily={"marianne"} p={4}>
-              Derniers fichiers uploader :
-            </Heading>
+          <Heading as={"h4"} size={"md"} fontFamily={"marianne"} p={4}>
+            Derniers fichiers uploader :
+          </Heading>
           <Table color={"white"}>
             <Thead color={"white"} fontFamily={"marianne"}>
               <Tr>
-                <Th color={"white"} fontFamily={"marianne"}>Actif</Th>
-                <Th color={"white"}fontFamily={"marianne"}>identifiant</Th>
-                <Th color={"white"} fontFamily={"marianne"}>fichier/dossier</Th>
-                <Th color={"white"} fontFamily={"marianne"}>chemin</Th>
-                <Th color={"white"} fontFamily={"marianne"}>permissions</Th>
-                <Th color={"white"} fontFamily={"marianne"}>nom uploader</Th>
-                <Th color={"white"} fontFamily={"marianne"}>uploader à</Th>
+                <Th color={"white"} fontFamily={"marianne"}>
+                  Actif
+                </Th>
+                <Th color={"white"} fontFamily={"marianne"}>
+                  identifiant
+                </Th>
+                <Th color={"white"} fontFamily={"marianne"}>
+                  fichier/dossier
+                </Th>
+                <Th color={"white"} fontFamily={"marianne"}>
+                  chemin
+                </Th>
+                <Th color={"white"} fontFamily={"marianne"}>
+                  permissions
+                </Th>
+                <Th color={"white"} fontFamily={"marianne"}>
+                  nom uploader
+                </Th>
+                <Th color={"white"} fontFamily={"marianne"}>
+                  uploader à
+                </Th>
               </Tr>
             </Thead>
             <Tbody bg={"#2645F9"}>
@@ -205,8 +232,8 @@ export default function Defaultdashboard() {
                   <Td fontFamily={"marianne"}>{file.filename}</Td>
                   <Td fontFamily={"marianne"}>{file.path}</Td>
                   <Td fontFamily={"marianne"}>{file.permissions}</Td>
-                  <Td fontFamily={"marianne"}>{file.user.username}</Td><
-                    Td>{new Date(file.upload_at).toLocaleString()}</Td>
+                  <Td fontFamily={"marianne"}>{file.user.username}</Td>
+                  <Td>{new Date(file.upload_at).toLocaleString()}</Td>
                 </Tr>
               ))}
             </Tbody>

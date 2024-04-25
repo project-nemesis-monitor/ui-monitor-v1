@@ -4,6 +4,7 @@ import { useState } from "react";
 import DashboardContent from "@/components/dashboardcomponenets/DashboardContent";
 import DrawerNavbar from "@/components/DrawerNavbar";
 import { Box } from '@chakra-ui/react'
+import Footer from "@/components/Footer";
 
 export default function DashboardPage() {
     useAuth()
@@ -17,6 +18,7 @@ export default function DashboardPage() {
                 <DrawerNavbar onTabChange={handleTabChange} />
             </Box>
             <DashboardContent activeTab={activeTab} />
+            <Footer/>
         </ContainerBlock>
     )
 }

@@ -6,13 +6,13 @@ const DashboardTabs = ({ activeTab, onTabChange }) => {
   };
   const tabs = [
     { id: "dashboard", label: "Dashboard" },
-    { id: "addUser", label: "Ajouter Utilisateur" },
-    { id: "addFile", label: "Ajouter Fichier" },
+    { id: "user", label: "Gestion utilisateur" },
+    { id: "file", label: "Gestion fichiers/dossier" },
   ];
 
   return (
     <Tabs isFitted>
-      <TabList style={{ flexDirection: 'column'}}>
+      <TabList style={{ flexDirection: 'column', justifyContent: 'flex-start', borderBottom: 'none' }}>
         {tabs.map((tab) => (
           <Tab key={tab.id} onClick={() => handleTabClick(tab.id)} _hover={{}}>
             {tab.label}
