@@ -21,7 +21,7 @@ export default function PublicLayout({ children }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ChakraProvider theme={theme}>
-        {!router.pathname.startsWith("/dashboard") ? <Navbar/> : "" }
+      {!(router.pathname.startsWith("/dashboard") || router.pathname.startsWith("/cgu") || router.pathname.startsWith("/mentions-legales") || router.pathname.startsWith("/politique")) && <Navbar />}
         <main>{children}</main>
       </ChakraProvider>
     </Box>

@@ -1,6 +1,5 @@
 import React from "react";
-import { Box, Flex, Image, Text, Link } from "@chakra-ui/react";
-import NextLink from "next/link";
+import { Flex, Text, Link } from "@chakra-ui/react";
 
 const Footer = () => {
   return (
@@ -8,15 +7,21 @@ const Footer = () => {
       bg="#2645F9"
       py={4}
       color="white"
-      mt={24}
       align="center"
       justify="center"
-      direction="column"
       fontFamily={"marianne"}
+      position="fixed"
+      bottom="0"
+      left="0"
+      right="0"
+      width="100%"
     >
-      
-      <Text textAlign="center" mt={2} fontSize={"medium"}>
-        NEMESIS GROUP
+      <Text textAlign="center" fontSize={"medium"}>
+        
+        <Link href="/mentions-legales" mr={4}>Mentions Légales</Link>
+        <Link href="/cgu" mr={4}>Conditions générales d&apos;utilisation</Link>
+        <Link href="/politique" mr={4}>Politique de confidentialité</Link>
+        
       </Text>
     </Flex>
   );
