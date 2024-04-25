@@ -5,7 +5,19 @@ import Landingwithicon from "@/components/landingpage/Landingwithicon";
 import Ressourceslink from "@/components/landingpage/Ressourceslink";
 import Spacewithgradient from "@/components/landingpage/Spacewithgradient";
 import { Box } from "@chakra-ui/react";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import Cookies from "js-cookie";
 export default function Home() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const isAuthenticated = Cookies.get("sessionToken");
+
+    if (isAuthenticated) {
+        router.replace("/dashboard")
+    }
+  }, []);
   const data = [
     {id: 1, title: "Surveillance des Propriétés des Fichiers", description: "Voyez tout, ne manquez rien : Nemesis vous offre un œil vigilant sur chaque modification de vos fichiers, enregistrant méticuleusement chaque événement pour une analyse approfondie ultérieure."},
     {id: 2, title: "Ajout ou suppression des fichiers à surveiller", description: "Personnalisation à votre guise : Ajoutez ou supprimez facilement des fichiers à surveiller selon vos besoins, offrant une flexibilité totale pour une protection sur mesure."},

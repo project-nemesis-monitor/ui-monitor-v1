@@ -63,7 +63,7 @@ export default function LoginPage() {
         });
         
 
-        router.push("/");
+        router.push("/dashboard");
       } else {
         console.error("Échec de l'authentification");
       }
@@ -93,7 +93,7 @@ export default function LoginPage() {
             Déverrouillez les portes du possible : Connectez-vous à une
             expérience numérique inégalée
           </Text>
-          <FormControl mx={4} my={4}>
+          <FormControl mx={2} my={4}>
             <Center>
               <Box>
                 <FormLabel color={"white"}>Identifiant</FormLabel>
@@ -120,7 +120,7 @@ export default function LoginPage() {
               </Box>
             </Center>
           </FormControl>
-          <FormControl mx={4} my={4}>
+          <FormControl mx={2} my={4}>
             <Center>
               <Box>
                 <FormLabel color={"white"}>Mot de passe</FormLabel>
