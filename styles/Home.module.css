@@ -7,6 +7,10 @@
   min-height: 100vh;
   font-family: "marianne";
 }
+.vertical-tabs {
+  display: flex;
+  flex-direction: column; /* Alignement vertical des onglets */
+}
 
 .description {
   display: inherit;

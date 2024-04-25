@@ -4,6 +4,8 @@ import Head from "next/head";
 import theme from "@/utils/chakra-theme";
 import { useRouter } from "next/router";
 import Navbar from "../NavBar";
+import NavBarDash from "../NavBarDash";
+
 
 
 export default function PublicLayout({ children }) {
@@ -19,7 +21,7 @@ export default function PublicLayout({ children }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ChakraProvider theme={theme}>
-        <Navbar/>
+        {!router.pathname.startsWith("/dashboard") ? <Navbar/> : "" }
         <main>{children}</main>
       </ChakraProvider>
     </Box>
