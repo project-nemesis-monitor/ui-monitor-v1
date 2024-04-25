@@ -13,6 +13,15 @@ import {
 import NextLink from "next/link";
 
 export default function Buttongradient() {
+  const downloadManual = () => {
+    
+    const link = document.createElement('a');
+    link.href = '/Manuel_nemesis.pdf'; 
+    link.download = 'Manuel_nemesis.pdf'; 
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   return (
     <Box
       fontFamily={"marianne"}
@@ -40,6 +49,7 @@ export default function Buttongradient() {
           size="lg"
           color={"white"}
           _hover={{ color: "#2645F9", bg: "white" }}
+          onClick={downloadManual}
         >
           Télécharger le manuel d&apos;utilisation {"  "} <Image src="/Download.png" alt="dnl image"/>
         </Button>
