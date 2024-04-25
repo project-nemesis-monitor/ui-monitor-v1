@@ -7,8 +7,8 @@ const DashboardContent = ({ activeTab }) => {
     return (
         <Box color={"white"} fontFamily={"marianne"}>
             {activeTab === "dashboard" && <Defaultdashboard/>}
-            {activeTab === "addUser" && <h1>Formulaire d'ajout d'utilisateur</h1>}
-            {activeTab === "addFile" && <h1>Formulaire d'ajout de fichier</h1>}
+            {activeTab === "addUser" && <h1>Formulaire d&apos;ajout d'utilisateur</h1>}
+            {activeTab === "addFile" && <h1>Formulaire d&apos;ajout de fichier</h1>}
 
         </Box>
     );
