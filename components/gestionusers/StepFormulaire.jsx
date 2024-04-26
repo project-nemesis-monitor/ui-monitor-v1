@@ -19,9 +19,17 @@ import {
   useDisclosure,
   useBreakpointValue,
   Select,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
 } from "@chakra-ui/react";
 
-export default function StepFormulaire({ state, userconnected }) {
+export default function StepFormulaire({
+  state,
+  userconnected,
+  onCreateAccountSuccess,
+}) {
   const formbox = useBreakpointValue({ "2xl": "70vh", "3xl": "50vh" });
   const padding = useBreakpointValue({ "2xl": "2vh", "3xl": "5vh" });
   const input = useBreakpointValue({ "2xl": "47vh", "3xl": "40vh" });
@@ -48,7 +56,8 @@ export default function StepFormulaire({ state, userconnected }) {
       setpermlist(value);
     }
   };
-  const isSuper = Cookies.get("sessionRole")
+  const isSuper = Cookies.get("sessionRole");
+  const [accountCreationStatus, setAccountCreationStatus] = useState(null);
   const handlecreate = async () => {
     try {
       if (confirmPass === password) {
@@ -61,14 +70,16 @@ export default function StepFormulaire({ state, userconnected }) {
             username,
             email,
             permlist,
-            password
+            password,
           }),
         });
 
         if (response.ok) {
-          router.reload()
+          setAccountCreationStatus("success");
+          onCreateAccountSuccess();
         } else {
-          console.error("Échec de la création");
+          setAccountCreationStatus("failure");
+          onCreateAccountSuccess();
         }
       }
     } catch (error) {
@@ -245,13 +256,59 @@ export default function StepFormulaire({ state, userconnected }) {
               bg={"#041538"}
               color={"white"}
               px={"5vh"}
-              _hover={{ bg: "white", color: "#2645F9" }}
+              _hover={{ bg: "gray.300", color: "#2645F9" }}
               fontFamily={"marianne"}
             >
               Créer le compte
             </Button>
           </Center>
         </Box>
+      )}
+      {state == 3 && accountCreationStatus == "success" && (
+        <>
+          <Alert
+            status="success"
+            variant="subtle"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            textAlign="center"
+            height="200px"
+            mt={8}
+            fontFamily={"marianne"}
+          >
+            <AlertIcon boxSize="40px" mr={0} />
+            <AlertTitle mt={4} mb={1} fontSize="lg">
+              Le compte a été créé avec succès !
+            </AlertTitle>
+            <AlertDescription maxWidth="sm">
+              Dîtes bienvenue au nouveau membre !
+            </AlertDescription>
+          </Alert>
+        </>
+      )}
+      {state == 3 && accountCreationStatus == "failure" && (
+        <>
+          <Alert
+            status="error"
+            variant="subtle"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            textAlign="center"
+            height="200px"
+            mt={8}
+            fontFamily={"marianne"}
+          >
+            <AlertIcon boxSize="40px" mr={0} />
+            <AlertTitle mt={4} mb={1} fontSize="lg">
+              Un problème est survenu lors de la création du compte !
+            </AlertTitle>
+            <AlertDescription maxWidth="sm">
+              Une erreur est survenue !
+            </AlertDescription>
+          </Alert>
+        </>
       )}
     </>
   );

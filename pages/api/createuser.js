@@ -44,7 +44,9 @@ export default async function handler(req, res) {
                     token: token
                 }
             });
-
+            if (newUser) {
+                return res.status(200).json({ message: 'Compte créé avec succès !' });
+            }
             
         } catch (error) {
             console.error('Erreur lors de la création de l\'utilisateur:', error);

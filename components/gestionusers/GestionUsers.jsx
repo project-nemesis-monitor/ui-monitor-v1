@@ -69,6 +69,9 @@ export default function GestionUsers() {
     setIsOpen(false);
     setActiveStep(0); 
   };
+  const handleCreateAccountSuccess = () => {
+    setActiveStep(3); 
+  };
   const userLevels = {
     "super admin": 0,
     "admin": 1,
@@ -96,6 +99,7 @@ export default function GestionUsers() {
   }, []);
   const isRole = Cookies.get("sessionRole")
   const currentUserLevel = userLevels[isRole];
+  
   return (
     <>
       <Box justifyContent={"center"} mb={8} fontFamily={"marianne"}>
@@ -243,7 +247,7 @@ export default function GestionUsers() {
                 </Step>
               ))}
             </Stepper>
-            <StepFormulaire state={activeStep} userconnected={allUsers}/>
+            <StepFormulaire state={activeStep} userconnected={allUsers} onCreateAccountSuccess={handleCreateAccountSuccess} />
           </ModalBody>
 
           <ModalFooter fontFamily={"marianne"}>
@@ -253,7 +257,7 @@ export default function GestionUsers() {
             <Button
               variant="ghost"
               onClick={handlePrevStep}
-              isDisabled={activeStep === 0}
+              isDisabled={activeStep === 0 || activeStep === 3}
             >
               Précédent
             </Button>
@@ -261,7 +265,7 @@ export default function GestionUsers() {
               bg={"#2645F9"}
               color={"white"}
               onClick={handleNextStep}
-              isDisabled={activeStep === 2}
+              isDisabled={activeStep === 2 || activeStep === 3}
               _hover={{bg: "gray.300", color: "#2645F9"}}
             >
               Suivant
