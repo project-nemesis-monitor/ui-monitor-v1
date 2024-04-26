@@ -107,7 +107,7 @@ export default function GestionUsers() {
           <Heading fontFamily={"marianne"}>Gestion Utilisateur</Heading>
         </Center>
       </Box>
-      <Center mt={8}>
+      <Center mb={10}>
         <Box
           w={"95%"}
           bg={"#2645F9"}
