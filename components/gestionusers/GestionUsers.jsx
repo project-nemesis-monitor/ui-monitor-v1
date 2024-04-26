@@ -69,13 +69,18 @@ export default function GestionUsers() {
     setIsOpen(false);
     setActiveStep(0); 
   };
+  const userLevels = {
+    "super admin": 0,
+    "admin": 1,
+    "dev": 2,
+  };
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const response = await fetch("/api/getalluser");
         if (response.ok) {
           const data = await response.json();
-          console.log(data);
+          
           setAllUsers(data.users);
         } else {
           console.error("Erreur de réponse:", response.status);
@@ -89,6 +94,8 @@ export default function GestionUsers() {
     };
     fetchUser();
   }, []);
+  const isRole = Cookies.get("sessionRole")
+  const currentUserLevel = userLevels[isRole];
   return (
     <>
       <Box justifyContent={"center"} mb={8} fontFamily={"marianne"}>
@@ -103,7 +110,7 @@ export default function GestionUsers() {
           mx={4}
           justifyContent={"center"}
           borderRadius="10px"
-          h={"49vh"}
+          pb={20}
         >
           <Heading as={"h4"} size={"md"} fontFamily={"marianne"} p={4}>
             Utilisateurs :
@@ -157,7 +164,7 @@ export default function GestionUsers() {
                   </Td>
                   <Td>{new Date(user.created_at).toLocaleString()}</Td>
                   <Td>{new Date(user.updated_at).toLocaleString()}</Td>
-                  {user.role == "super admin" ? (
+                  {user.role == "super admin" || user.role == isRole || currentUserLevel ===2 ? (
                     <Td>Aucune action à apporter</Td>
                   ) : (
                     <>
@@ -196,6 +203,7 @@ export default function GestionUsers() {
                 setOverlay(<OverlayOne />);
                 onOpen()
               }}
+              isDisabled={isRole == "dev"}
             >
               Ajouter un utilisateur
             </Button>
@@ -239,7 +247,7 @@ export default function GestionUsers() {
           </ModalBody>
 
           <ModalFooter fontFamily={"marianne"}>
-            <Button colorScheme="blue" mr={3} onClick={handleCloseModal}>
+            <Button bg={"#2645F9"} mr={3} onClick={handleCloseModal} color={"white"} _hover={{bg: "gray.300", color: "#2645F9"}}>
               Fermer
             </Button>
             <Button
@@ -250,9 +258,11 @@ export default function GestionUsers() {
               Précédent
             </Button>
             <Button
-              colorScheme="blue"
+              bg={"#2645F9"}
+              color={"white"}
               onClick={handleNextStep}
               isDisabled={activeStep === 2}
+              _hover={{bg: "gray.300", color: "#2645F9"}}
             >
               Suivant
             </Button>
