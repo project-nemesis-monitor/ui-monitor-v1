@@ -45,9 +45,7 @@ export default async function handler(req, res) {
                 }
             });
 
-            if (newUser) {
-                router.reload()
-            }
+            
         } catch (error) {
             console.error('Erreur lors de la création de l\'utilisateur:', error);
             return res.status(500).json({ message: 'Erreur interne du serveur.' });
