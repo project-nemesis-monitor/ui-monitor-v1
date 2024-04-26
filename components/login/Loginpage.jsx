@@ -54,13 +54,19 @@ export default function LoginPage() {
       if (response.ok) {
         const data = await response.json();
         
-        const { token } = data.usr;
+        const { token, role } = data.usr;
+        console.log(data.usr)
 
         Cookies.set("sessionToken", token, {
           secure: true,
           sameSite: "strict",
           
-        });
+        })
+        Cookies.set("sessionRole", role, {
+          secure: true,
+          sameSite: "strict",
+          
+        })
         
 
         router.push("/dashboard");

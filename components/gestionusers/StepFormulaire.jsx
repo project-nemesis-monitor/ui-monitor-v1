@@ -27,20 +27,54 @@ export default function StepFormulaire({ state, userconnected }) {
   const input = useBreakpointValue({ "2xl": "47vh", "3xl": "40vh" });
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("")
-  const [confirmPass, setconfirmPass] = useState("")
+  const [email, setEmail] = useState("");
+  const [confirmPass, setconfirmPass] = useState("");
+  const [permlist, setpermlist] = useState("");
   const { isOpen, onToggle } = useDisclosure();
   const router = useRouter();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     if (name === "username") {
       setUsername(value);
     } else if (name === "email") {
+      setEmail(value);
+    } else if (name === "password") {
       setPassword(value);
+    } else if (name === "confirmpassword") {
+      setconfirmPass(value);
+    } else if (name === "selectoption") {
+      setpermlist(value);
     }
   };
-  const isSuper = userconnected.map((user) => user.role);
+  const isSuper = Cookies.get("sessionRole")
+  const handlecreate = async () => {
+    try {
+      if (confirmPass === password) {
+        const response = await fetch("/api/createuser", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username,
+            email,
+            permlist,
+            password
+          }),
+        });
+
+        if (response.ok) {
+          router.reload()
+        } else {
+          console.error("Échec de la création");
+        }
+      }
+    } catch (error) {
+      console.error("Erreur lors de la création :", error);
+    }
+  };
 
   return (
     <>
@@ -83,7 +117,7 @@ export default function StepFormulaire({ state, userconnected }) {
                     type={"text"}
                     name="email"
                     placeholder="Saisissez une adresse email"
-                    value={password}
+                    value={email}
                     onChange={handleChange}
                     mb={2}
                     w={input}
@@ -102,7 +136,7 @@ export default function StepFormulaire({ state, userconnected }) {
             <Center>
               <Box>
                 <FormLabel color={"black"}>Permissions à donner :</FormLabel>
-                <Select>
+                <Select name="selectoption" onChange={handleChange}>
                   <option defaultValue={""}>Saisissez une permission</option>
                   <option value="admin">Admin</option>
                   <option value="dev">Dev</option>
@@ -163,8 +197,8 @@ export default function StepFormulaire({ state, userconnected }) {
             </Center>
           </FormControl>
           <FormControl mx={2} my={4} fontFamily={"marianne"}>
-          <Center>
-            <Box>
+            <Center>
+              <Box>
                 <FormLabel color={"black"}>Confirmer mot de passe</FormLabel>
 
                 <InputGroup>
@@ -178,9 +212,9 @@ export default function StepFormulaire({ state, userconnected }) {
                   </InputLeftElement>
                   <Input
                     type={isOpen ? "text" : "password"}
-                    name="password"
+                    name="confirmpassword"
                     placeholder="Confimer votre mot de passe"
-                    value={password}
+                    value={confirmPass}
                     onChange={handleChange}
                     mb={2}
                     w={input}
@@ -202,14 +236,12 @@ export default function StepFormulaire({ state, userconnected }) {
                     />
                   </InputRightElement>
                 </InputGroup>
-              
-              
-            </Box>
-          </Center>
-        </FormControl>
-        <Center>
+              </Box>
+            </Center>
+          </FormControl>
+          <Center>
             <Button
-            //   onClick={handleLogin}
+              onClick={handlecreate}
               bg={"#041538"}
               color={"white"}
               px={"5vh"}
