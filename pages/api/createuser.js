@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router';
+
 
 const { PrismaClient } = require('@prisma/client');
 const bcrypt = require('bcrypt');
@@ -9,7 +9,7 @@ const prisma = new PrismaClient();
 
 
 export default async function handler(req, res) {
-    const router = useRouter()
+   
     if (req.method == 'POST') {
         const { username, email, permlist, password } = req.body;
         try {
@@ -45,9 +45,7 @@ export default async function handler(req, res) {
                 }
             });
 
-            if (newUser) {
-                router.reload()
-            }
+            
         } catch (error) {
             console.error('Erreur lors de la création de l\'utilisateur:', error);
             return res.status(500).json({ message: 'Erreur interne du serveur.' });
