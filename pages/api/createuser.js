@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router';
+
 
 const { PrismaClient } = require('@prisma/client');
 const bcrypt = require('bcrypt');
@@ -9,7 +9,7 @@ const prisma = new PrismaClient();
 
 
 export default async function handler(req, res) {
-    const router = useRouter()
+   
     if (req.method == 'POST') {
         const { username, email, permlist, password } = req.body;
         try {
