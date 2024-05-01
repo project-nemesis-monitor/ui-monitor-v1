@@ -307,7 +307,7 @@ export default function Stepformfiles({ state, onCreateAccountSuccess }) {
           >
             <AlertIcon boxSize="40px" mr={0} />
             <AlertTitle mt={4} mb={1} fontSize="lg">
-              Un problème est survenu lors de l'ajout du fichier/dossier !
+              Un problème est survenu lors de l&apos;ajout du fichier/dossier !
             </AlertTitle>
             <AlertDescription maxWidth="sm">
               Une erreur est survenue !
