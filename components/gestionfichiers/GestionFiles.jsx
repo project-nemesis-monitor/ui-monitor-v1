@@ -41,16 +41,26 @@ import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import { EditIcon, DeleteIcon } from "@chakra-ui/icons";
 import NextLink from 'next/link'
-
+import Stepformfiles from "./Stepformfiles";
 export default function GestionFiles() {
   const [allFiles, setAllFiles] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const onOpen = () => setIsOpen(true);
   const onClose = () => setIsOpen(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [deleteFileId, setDeleteFileId] = useState(null);
+  const openDeleteModal = (userId) => {
+    setDeleteFileId(userId)
+    setIsDeleteModalOpen(true);
+  }
+  const closeDeleteModal = () => {
+    setDeleteFileId(null)
+    setIsDeleteModalOpen(false);
+  }
   const steps = [
     { title: "Première étape", description: "Informations" },
     { title: "Deuxième étape", description: "Permissions" },
-    { title: "Troisième étape", description: "Mot de passe" },
+    { title: "Troisième étape", description: "Activité surveillance" },
   ];
   const OverlayOne = () => (
     <ModalOverlay bg={"none"} backdropFilter="blur(10px) " />
@@ -99,6 +109,30 @@ export default function GestionFiles() {
   }, []);
   const isRole = Cookies.get("sessionRole");
   const currentUserLevel = userLevels[isRole];
+  const handleDeleteFile= async (fileId) => {
+    
+    try {
+      const response = await fetch("/api/deletefile", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body:  JSON.stringify({
+          fileId: fileId
+        }) ,
+      });
+      if (response.ok) {
+        closeDeleteModal();
+        window.location.reload()
+      } else {
+        console.error("Erreur lors de la suppression de l'utilisateur:", response.status);
+        
+      }
+      closeDeleteModal();
+    } catch (error) {
+      console.error("Erreur lors de la suppression de l'utilisateur:", error);
+    }
+  };
 
   return (
     <>
@@ -188,6 +222,7 @@ export default function GestionFiles() {
                           size="sm"
                           display={"inline-block"}
                           m={2}
+                          onClick={() => openDeleteModal(file.id)}
                         >
                           <Icon as={DeleteIcon} color={"white"} />
                         </Button>
@@ -216,7 +251,7 @@ export default function GestionFiles() {
           </Center>
         </Box>
       </Center>
-      {/* <Modal isOpen={isOpen} onClose={handleCloseModal} size="md">
+      <Modal isOpen={isOpen} onClose={handleCloseModal} size="md">
           {overlay}
           <ModalContent maxW="70%">
             <ModalHeader fontFamily={"marianne"}>
@@ -249,7 +284,7 @@ export default function GestionFiles() {
                   </Step>
                 ))}
               </Stepper>
-              <StepFormulaire state={activeStep} userconnected={allUsers} onCreateAccountSuccess={handleCreateAccountSuccess} />
+              <Stepformfiles state={activeStep} onCreateAccountSuccess={handleAddFileSuccess} /> 
             </ModalBody>
   
             <ModalFooter fontFamily={"marianne"}>
@@ -274,7 +309,23 @@ export default function GestionFiles() {
               </Button>
             </ModalFooter>
           </ModalContent>
-        </Modal> */}
+        </Modal>
+        <Modal isOpen={isDeleteModalOpen} onClose={closeDeleteModal}>
+      {overlay}
+        <ModalContent fontFamily={"marianne"}>
+          <ModalHeader>Confirmation de suppression</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            Êtes-vous sûr de vouloir supprimer cet utilisateur ?
+          </ModalBody>
+          <ModalFooter>
+            <Button colorScheme="red" mr={3} onClick={() => handleDeleteFile(deleteFileId)}>
+              Confirmer
+            </Button>
+            <Button onClick={closeDeleteModal}>Annuler</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </>
   );
 }

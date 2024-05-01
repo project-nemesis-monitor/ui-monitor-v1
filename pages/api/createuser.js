@@ -13,7 +13,7 @@ export default async function handler(req, res) {
     if (req.method == 'POST') {
         const { username, email, permlist, password } = req.body;
         try {
-            // Vérifier si le username et l'email sont uniques
+            
             const existingUser = await prisma.users.findFirst({
                 where: {
                     OR: [
@@ -27,10 +27,10 @@ export default async function handler(req, res) {
                 return res.status(400).json({ message: 'Le nom d\'utilisateur ou l\'email existe déjà.' });
             }
 
-            // Générer un UUID unique
+            
             const userId = uuidv4();
 
-            // Créer le nouvel utilisateur
+            
             const hashedPassword = await bcrypt.hash(password, 10);
             const token = jwt.sign({ userId: userId }, 'yH8a*%cR2s#Jq&!m');
 
