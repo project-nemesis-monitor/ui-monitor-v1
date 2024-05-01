@@ -31,7 +31,7 @@ import {
           dans le monde du numérique.
         </Text>
         <Center>
-          <HStack mt={10} spacing={20}>
+          <HStack mt={10} spacing={20} mb={20}>
             <NextLink
               href={"https://cyber.gouv.fr/bonnes-pratiques-protegez-vous"}
             >
