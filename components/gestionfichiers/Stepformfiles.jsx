@@ -88,6 +88,7 @@ export default function Stepformfiles({ state, onCreateAccountSuccess }) {
         if (response.ok) {
           setAccountCreationStatus("success");
           onCreateAccountSuccess();
+          window.location.reload()
         } else {
           setAccountCreationStatus("failure");
           onCreateAccountSuccess();

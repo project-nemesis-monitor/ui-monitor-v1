@@ -150,6 +150,7 @@ export default function GestionUsers() {
           justifyContent={"center"}
           borderRadius="10px"
           pb={20}
+          mb={20}
         >
           <Heading as={"h4"} size={"md"} fontFamily={"marianne"} p={4}>
             Utilisateurs :

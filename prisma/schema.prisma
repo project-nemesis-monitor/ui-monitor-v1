@@ -16,6 +16,8 @@ model checkfile {
   permissions String?  @db.Text
   upload_by   String   @db.Text
   upload_at   DateTime @db.Timestamp(0)
+
+  @@index([upload_by(length: 768)], map: "checkfile_upload_by_fkey")
 }
 
 model users {
@@ -33,9 +35,10 @@ model users {
 }
 
 model logs {
-  log_id            Int       @id @default(autoincrement())
-  event_type        String?   @db.VarChar(255)
-  event_description String?   @db.Text
-  file_id           String    @db.Text
-  timestamp         DateTime? @default(now()) @db.Timestamp(0)
+  id          Int       @id @default(autoincrement())
+  operation   String    @db.VarChar(10)
+  table_name  String    @db.VarChar(50)
+  record_id   Int
+  record_data String?   @db.LongText
+  created_at  DateTime? @default(now()) @db.Timestamp(3)
 }

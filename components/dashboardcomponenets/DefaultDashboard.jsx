@@ -176,14 +176,15 @@ export default function Defaultdashboard() {
           </GridItem>
         </Grid>
       </Flex>
-      <Center mt={10}>
+      <Center mt={10} >
         <Box
           w={"90%"}
           bg={"#2645F9"}
           mx={4}
           justifyContent={"center"}
           borderRadius="10px"
-          h={"49vh"}
+          h={"40vh"}
+          mb={20}
         >
           <Heading as={"h4"} size={"md"} fontFamily={"marianne"} p={4}>
             Derniers fichiers uploader :

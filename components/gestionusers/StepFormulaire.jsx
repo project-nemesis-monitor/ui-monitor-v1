@@ -77,6 +77,7 @@ export default function StepFormulaire({
         if (response.ok) {
           setAccountCreationStatus("success");
           onCreateAccountSuccess();
+          window.location.reload()
         } else {
           setAccountCreationStatus("failure");
           onCreateAccountSuccess();

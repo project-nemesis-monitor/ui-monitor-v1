@@ -111,7 +111,7 @@ export default function FormUser({ identifiant }) {
           fontFamily={"marianne"}
           m={10}
           borderRadius={"10px"}
-          w={"50%"}
+          w={"70%"}
         >
           <Center mb={8} mt={8}>
             <Heading color={"white"} fontFamily={"marianne"} px={4}>
